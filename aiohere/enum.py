@@ -6,13 +6,13 @@ from enum import Enum
 class WeatherProductType(Enum):
     """Identifies the type of report to obtain."""
 
-    observation = "observation"
-    forecast_7days = "forecast_7days"
-    forecast_7days_simple = "forecast_7days_simple"
-    forecast_hourly = "forecast_hourly"
-    forecast_astronomy = "forecast_astronomy"
-    alerts = "alerts"
-    nws_alerts = "nws_alerts"
+    OBSERVATION = "observation"
+    FORECAST_7DAYS = "forecast_7days"
+    FORECAST_7DAYS_SIMPLE = "forecast_7days_simple"
+    FORECAST_HOURLY = "forecast_hourly"
+    FORECAST_ASTRONOMY = "forecast_astronomy"
+    ALERTS = "alerts"
+    NWS_ALERTS = "nws_alerts"
 
     def __str__(self):
-        return "%s" % self._value_
+        return "%s" % self.value

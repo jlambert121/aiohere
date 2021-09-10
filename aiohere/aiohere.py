@@ -1,6 +1,5 @@
 """A module to query the here web api."""
 from __future__ import annotations
-from aiohere.enum import WeatherProductType
 
 import asyncio
 import socket
@@ -9,6 +8,8 @@ from typing import Any, Mapping, Optional
 import aiohttp
 import async_timeout
 from yarl import URL
+
+from aiohere.enum import WeatherProductType
 
 from .exceptions import (
     HereError,
@@ -110,7 +111,7 @@ class AioHere:
             response.close()
 
             if content_type == "application/json":
-                raise self._get_error_from_response(await response.json())
+                raise get_error_from_response(await response.json())
             raise HereError(response.status, {"message": contents.decode("utf8")})
 
         if response.status == 204:  # NO CONTENT
@@ -159,38 +160,11 @@ class AioHere:
         }
         json_data = await self.request(params=params)
 
-        if json_data.get(self._product_node(product)) is not None:
+        if json_data.get(product_node(product)) is not None:
             return json_data
-        else:
-            error = self._get_error_from_response(json_data)
-            raise error
 
-    def _get_error_from_response(self, json_data: Mapping[str, Any]) -> HereError:
-        if "error" in json_data:
-            if json_data["error"] == "Unauthorized":
-                return HereUnauthorizedError(json_data["error_description"])
-        error_type = json_data.get("Type")
-        error_message = json_data.get("Message")
-        if error_type == "Invalid Request":
-            return HereInvalidRequestError(error_message)
-        else:
-            return HereError(error_message)
-
-    def _product_node(self, product: WeatherProductType) -> str:
-        if product == WeatherProductType.observation:
-            return "observations"
-        elif product == WeatherProductType.forecast_7days:
-            return "forecasts"
-        elif product == WeatherProductType.forecast_7days_simple:
-            return "dailyForecasts"
-        elif product == WeatherProductType.forecast_hourly:
-            return "hourlyForecasts"
-        elif product == WeatherProductType.forecast_astronomy:
-            return "astronomy"
-        elif product == WeatherProductType.alerts:
-            return "alerts"
-        else:
-            return "nwsAlerts"
+        error = get_error_from_response(json_data)
+        raise error
 
     async def close(self) -> None:
         """Close open client session."""
@@ -210,3 +184,32 @@ class AioHere:
             _exc_info: Exec type.
         """
         await self.close()
+
+
+def get_error_from_response(json_data: Mapping[str, Any]) -> HereError:
+    """Return the correct error type."""
+    if "error" in json_data:
+        if json_data["error"] == "Unauthorized":
+            return HereUnauthorizedError(json_data["error_description"])
+    error_type = json_data.get("Type")
+    error_message = json_data.get("Message")
+    if error_type == "Invalid Request":
+        return HereInvalidRequestError(error_message)
+    return HereError(error_message)
+
+
+def product_node(product: WeatherProductType) -> str:
+    """Return the correct node name for the provided product type."""
+    if product == WeatherProductType.OBSERVATION:
+        return "observations"
+    if product == WeatherProductType.FORECAST_7DAYS:
+        return "forecasts"
+    if product == WeatherProductType.FORECAST_7DAYS_SIMPLE:
+        return "dailyForecasts"
+    if product == WeatherProductType.FORECAST_HOURLY:
+        return "hourlyForecasts"
+    if product == WeatherProductType.FORECAST_ASTRONOMY:
+        return "astronomy"
+    if product == WeatherProductType.ALERTS:
+        return "alerts"
+    return "nwsAlerts"

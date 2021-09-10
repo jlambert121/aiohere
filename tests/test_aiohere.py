@@ -65,7 +65,7 @@ async def test_get_weather(aresponses):
         response = await aiohere.weather_for_coordinates(
             latitude=0.0,
             longitude=0.0,
-            product=WeatherProductType.forecast_7days_simple,
+            product=WeatherProductType.FORECAST_7DAYS_SIMPLE,
         )
 
         assert (
