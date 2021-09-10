@@ -44,3 +44,5 @@ if __name__ == "__main__":
     loop = asyncio.get_event_loop()
     loop.run_until_complete(main())
 ```
+
+<a href="https://www.buymeacoffee.com/eifinger" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/black_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a><br>
