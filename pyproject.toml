@@ -52,5 +52,5 @@ multi_line_output = 3
 addopts = "--cov"
 
 [tool.semantic_release]
-version_variable="aioweenect/__init__.py:__version__"
+version_variable="aiohere/__init__.py:__version__"
 build_command="pip install flit && flit build"

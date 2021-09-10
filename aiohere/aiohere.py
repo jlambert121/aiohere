@@ -50,7 +50,6 @@ class AioHere:
     async def request(
         self,
         method: str = "GET",
-        additional_headers: dict | None = None,
         data: Any | None = None,
         json_data: dict | None = None,
         params: Mapping[str, str] | None = None,
@@ -66,7 +65,7 @@ class AioHere:
         Returns:
             The response from the API. In case the response is a JSON response,
             the method will return a decoded JSON response as a Python
-            dictionary. In other cases, it will return the RAW text response.
+            dictionary.
         Raises:
             WeenectConnectionError: An error occurred while communicating
                 with the weenect API (connection issues).
@@ -78,9 +77,6 @@ class AioHere:
             "Accept": "application/json",
             "DNT": "1",
         }
-
-        if additional_headers is not None:
-            headers.update(additional_headers)
 
         if self._session is None:
             self._session = aiohttp.ClientSession()
@@ -120,9 +116,6 @@ class AioHere:
 
         if "application/json" in content_type:
             return await response.json()
-
-        text = await response.text()
-        return {"message": text}
 
     async def weather_for_coordinates(
         self,
