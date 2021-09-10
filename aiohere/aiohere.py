@@ -3,7 +3,6 @@ from __future__ import annotations
 from aiohere.enum import WeatherProductType
 
 import asyncio
-import json
 import socket
 from typing import Any, Mapping, Optional
 
@@ -111,7 +110,7 @@ class AioHere:
             response.close()
 
             if content_type == "application/json":
-                raise HereError(response.status, json.loads(contents.decode("utf8")))
+                raise self._get_error_from_response(await response.json())
             raise HereError(response.status, {"message": contents.decode("utf8")})
 
         if response.status == 204:  # NO CONTENT

@@ -13,3 +13,6 @@ class WeatherProductType(Enum):
     forecast_astronomy = "forecast_astronomy"
     alerts = "alerts"
     nws_alerts = "nws_alerts"
+
+    def __str__(self):
+        return "%s" % self._value_
