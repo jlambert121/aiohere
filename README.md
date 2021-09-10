@@ -31,7 +31,7 @@ async def main():
         response = await aiohere.weather_for_coordinates(
             latitude=49.9836187,
             longitude=8.2329145,
-            product=WeatherProductType.forecast_7days_simple,
+            product=WeatherProductType.FORECAST_7DAYS_SIMPLE,
         )
         lowTemperature = response["dailyForecasts"]["forecastLocation"]["forecast"][0]["lowTemperature"]
         highTemperature = response["dailyForecasts"]["forecastLocation"]["forecast"][0]["highTemperature"]
