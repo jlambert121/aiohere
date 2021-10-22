@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v1.3.0 (2021-10-22)
+### Feature
+* Add language support ([`4650dda`](https://github.com/eifinger/aiohere/commit/4650ddab423f5f3b27ea6e354e3d0aef4169cdcd))
+
 ## v1.2.0 (2021-09-10)
 ### Feature
 * Expose Errors in API ([`6b2f755`](https://github.com/eifinger/aiohere/commit/6b2f75561262aecb007e9916b728bc66456171c1))
