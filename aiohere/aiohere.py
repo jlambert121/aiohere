@@ -9,7 +9,7 @@ import aiohttp
 import async_timeout
 from yarl import URL
 
-from aiohere.enum import WeatherProductType
+from aiohere.enum import Language, WeatherProductType
 
 from .exceptions import (
     HereError,
@@ -124,6 +124,7 @@ class AioHere:
         product: WeatherProductType,
         one_observation: bool = True,
         metric: bool = True,
+        language: Language = Language.ENGLISH,
     ) -> Optional[Any]:
         """Request the product for given location name.
         Args:
@@ -137,6 +138,8 @@ class AioHere:
             Limit the result to the best mapped weather station.
           metric (bool):
             Use the metric system.
+          language (str):
+            Language of the descriptions to return.
         Returns:
           DestinationWeatherResponse
         Raises:
@@ -150,6 +153,7 @@ class AioHere:
             "metric": "true" if metric is True else "false",
             "latitude": str(latitude),
             "longitude": str(longitude),
+            "language": str(language),
         }
         json_data = await self.request(params=params)
 

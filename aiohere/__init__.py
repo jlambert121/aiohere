@@ -3,9 +3,9 @@
 from .aiohere import (
     AioHere,
     HereError,
+    HereInvalidRequestError,
     HereTimeOutError,
     HereUnauthorizedError,
-    HereInvalidRequestError,
     WeatherProductType,
 )
 

@@ -1,6 +1,4 @@
 """Tests for `aioweenect.aioweenect`."""
-from aiohere.enum import WeatherProductType
-from aiohere.aiohere import API_HOST, API_PATH
 import json
 import os
 
@@ -8,6 +6,8 @@ import aiohttp
 import pytest
 
 from aiohere import AioHere
+from aiohere.aiohere import API_HOST, API_PATH
+from aiohere.enum import WeatherProductType
 
 
 @pytest.mark.asyncio
