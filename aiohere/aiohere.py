@@ -9,7 +9,7 @@ import aiohttp
 import async_timeout
 from yarl import URL
 
-from aiohere.enum import Language, WeatherProductType
+from aiohere.enum import WeatherProductType
 
 from .exceptions import (
     HereError,
@@ -124,7 +124,7 @@ class AioHere:
         product: WeatherProductType,
         one_observation: bool = True,
         metric: bool = True,
-        language: Language = Language.ENGLISH,
+        language: str = "en",
     ) -> Optional[Any]:
         """Request the product for given location name.
         Args:
