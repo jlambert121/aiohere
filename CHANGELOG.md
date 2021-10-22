@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v1.3.1 (2021-10-22)
+### Fix
+* Lang as str instead of enum ([`a07d153`](https://github.com/eifinger/aiohere/commit/a07d153557c9725cbe65290d0e4fb98234df35e4))
+
 ## v1.3.0 (2021-10-22)
 ### Feature
 * Add language support ([`4650dda`](https://github.com/eifinger/aiohere/commit/4650ddab423f5f3b27ea6e354e3d0aef4169cdcd))
