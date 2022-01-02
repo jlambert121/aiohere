@@ -13,8 +13,7 @@ repository = "http://github.com/eifinger/aiohere"
 keywords = [
     "aiohttp",
     "asyncio",
-    "weenect",
-    "weenect-api"
+    "here"
 ]
 classifiers = [
     "Intended Audience :: Developers",
