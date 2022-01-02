@@ -1,6 +1,7 @@
 """Tests for `aioweenect.aioweenect`."""
 import json
 import os
+from typing import Any
 
 import aiohttp
 import pytest
@@ -26,7 +27,7 @@ async def test_get_weather(aresponses):
             longitude=0.0,
             product=WeatherProductType.FORECAST_7DAYS_SIMPLE,
         )
-
+        assert response is not None
         assert (
             response["dailyForecasts"]["forecastLocation"]["forecast"][0][
                 "highTemperature"
@@ -35,7 +36,7 @@ async def test_get_weather(aresponses):
         )
 
 
-def load_json_fixture(filename):
+def load_json_fixture(filename) -> Any:
     """Load a fixture."""
     path = os.path.join(os.path.dirname(__file__), "fixtures", filename)
     with open(path, encoding="utf-8") as fptr:
