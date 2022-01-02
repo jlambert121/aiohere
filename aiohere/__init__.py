@@ -17,5 +17,3 @@ __all__ = [
     "HereInvalidRequestError",
     "WeatherProductType",
 ]
-
-__version__ = "1.3.1"

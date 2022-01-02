@@ -13,7 +13,7 @@ Based on [herepy](https://github.com/abdullahselek/HerePy)
 ## Installation
 
 ```bash
-$ pip install aiohere
+pip install aiohere
 ```
 
 ## Usage
@@ -25,6 +25,7 @@ import asyncio
 
 API_KEY = ""
 
+
 async def main():
     """Show example how to get weather forecast for your location."""
     async with AioHere(api_key=API_KEY) as aiohere:
@@ -33,11 +34,19 @@ async def main():
             longitude=8.2329145,
             product=WeatherProductType.FORECAST_7DAYS_SIMPLE,
         )
-        lowTemperature = response["dailyForecasts"]["forecastLocation"]["forecast"][0]["lowTemperature"]
-        highTemperature = response["dailyForecasts"]["forecastLocation"]["forecast"][0]["highTemperature"]
-        weekday = response["dailyForecasts"]["forecastLocation"]["forecast"][0]["weekday"]
+        lowTemperature = response["dailyForecasts"]["forecastLocation"]["forecast"][0][
+            "lowTemperature"
+        ]
+        highTemperature = response["dailyForecasts"]["forecastLocation"]["forecast"][0][
+            "highTemperature"
+        ]
+        weekday = response["dailyForecasts"]["forecastLocation"]["forecast"][0][
+            "weekday"
+        ]
 
-        print(f"Temperature on {weekday} will be between {lowTemperature}°C and {highTemperature}°C")
+        print(
+            f"Temperature on {weekday} will be between {lowTemperature}°C and {highTemperature}°C"
+        )
 
 
 if __name__ == "__main__":
