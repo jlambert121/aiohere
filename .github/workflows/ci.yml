@@ -27,7 +27,7 @@ jobs:
           poetry install
       - name: Lint
         run: |
-          poetry run pre-commit run --all-files
+          SKIP=no-commit-to-branch poetry run pre-commit run --all-files
       - uses: codecov/codecov-action@v2.1.0
         with:
           token: ${{secrets.CODECOV}}
