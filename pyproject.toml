@@ -77,3 +77,4 @@ paths = ["aiohere", "tests"]
 version_toml = "pyproject.toml:tool.poetry.version"
 build_command = "pip install poetry && poetry build"
 commit_subject = "chore(release): {version}"
+branch = "main"
