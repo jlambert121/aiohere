@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v1.4.0 (2022-11-20)
+### Feature
+* Add Python 3.11 ([`21e6378`](https://github.com/eifinger/aiohere/commit/21e6378cb35f4036130e41b82e091a92f7822695))
+
 ## v1.3.1 (2021-10-22)
 ### Fix
 * Lang as str instead of enum ([`a07d153`](https://github.com/eifinger/aiohere/commit/a07d153557c9725cbe65290d0e4fb98234df35e4))
