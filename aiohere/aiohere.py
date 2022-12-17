@@ -19,8 +19,8 @@ from .exceptions import (
 )
 
 SCHEME = "https"
-API_HOST = "weather.cc.api.here.com"
-API_PATH = "/weather/1.0/report.json"
+API_HOST = "weather.hereapi.com"
+API_PATH = "/v3/report"
 API_URL = str(URL.build(scheme=SCHEME, host=API_HOST, path=API_PATH))
 
 
@@ -148,12 +148,11 @@ class AioHere:
 
         params: Mapping[str, str] = {
             "apiKey": self.api_key,
-            "product": str(product),
-            "oneobservation": "true" if one_observation is True else "false",
-            "metric": "true" if metric is True else "false",
-            "latitude": str(latitude),
-            "longitude": str(longitude),
-            "language": str(language),
+            "products": str(product),
+            "oneObservation": "true" if one_observation is True else "false",
+            "units": "metric" if metric is True else "imperial",
+            "location": f"{str(latitude)},{str(longitude)}",
+            "lang": str(language),
         }
         json_data = await self.request(params=params)
 
